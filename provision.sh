@@ -47,7 +47,7 @@ cat > meta.json <<EOF
 }
 EOF
 
-tar cvf docker-parallels.dockercontext meta.json tls
+tar cvf /vagrant/docker-parallels.dockercontext meta.json tls
 
 echo "Updating /etc/docker/daemon.json"
 cat > /etc/docker/daemon.json <<'EOF'
