@@ -1,0 +1,39 @@
+#+title: Docker Parallels Desktop
+#+author: Frank Patz-Brockmann
+
+* Docker for Parallels Desktop
+
+  This projects provisions a virtual machine with Parallels Desktop
+  for Mac that runs the Docker daemon. It is intended as a replacement
+  for Docker Desktop, docker-machine etc. to quickly set up Docker
+  without running a separate hypervisor.
+
+  Advantages:
+
+  - more up-to-date Docker version than projects that rely on
+    ~boot2docker~
+  - re-uses existing Parallels Desktop hypervisor
+  - folder sharing with Parallels Desktop, which is enormously faster
+    than other hypervisors
+
+* Prerequisites
+
+  - Paralles Desktop for Mac (Pro edition)
+  - Docker CLI on your Mac
+  - Vagrant
+  - The Parallels provider for Vagrant
+
+    #+begin_src console
+      $ brew install docker vagrant
+      $ vagrant plugin install vagrant-parallels
+    #+end_src
+
+* Usage
+
+  Simply run ~vagrant up~ in this directory. It will provision a new
+  VM based on ~bento/ubuntu-18.04~, install an up-to-date Docker
+  daemon, generate TLS certificates and create a new Docker context
+  named ~docker-parallels~ on your Mac, that is activated
+  automatically.
+
+    
