@@ -56,3 +56,11 @@
     #+end_src
 
     ... would be here http://dockerhost:8080
+
+  - implementation: the VM is provisioned by ~provision.sh~; adding
+    the Docker context to the Mac is done by ~host.sh~. Both scripts
+    are automatically run by Vagrant on ~up~ and
+    ~provision~. Reprovisioning can be done while the VM is already
+    running and will recreate the Docker context.
+
+    Feel free to hack on the scripts and drop me a MR.
