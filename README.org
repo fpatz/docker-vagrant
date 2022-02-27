@@ -23,9 +23,9 @@
   - Vagrant
   - The Parallels provider for Vagrant
 
-    #+begin_src console
-      $ brew install docker vagrant
-      $ vagrant plugin install vagrant-parallels
+    #+begin_src shell
+      brew install docker vagrant
+      vagrant plugin install vagrant-parallels
     #+end_src
 
 * Usage
@@ -36,4 +36,23 @@
   named ~docker-parallels~ on your Mac, that is activated
   automatically.
 
-    
+* Notes
+
+  - the VM is provisioned to share ~/Users~ with the Mac; this makes
+    it easy to add Mac directories as volumes to Docker containers
+    using the same pathes as on the Mac: 
+
+    #+begin_src shell
+      docker run -it -v `pwd`:`pwd` alpine
+    #+end_src
+
+  - Parallels will automatically add the VM to ~/etc/hosts~ on the Mac
+    under the name ~dockerhost~; thus servers in Docker containers can
+    be reached from the Mac as ~dockerhost:<port>~, e.g. this
+    container:
+
+    #+begin_src shell
+      docker run -p 8080:80 nginx
+    #+end_src
+
+    ... would be here http://dockerhost:8080
