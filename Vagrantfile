@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-18.04"
+  config.vm.box = "bento/ubuntu-24.04"
   config.vm.hostname = "dockerhost"
 
   # Share an additional folder to the guest VM. The first argument is
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
   config.vm.provider "parallels" do |prl|
-    prl.memory = "4096"
+    prl.memory = "8192"
     prl.cpus = 8
     prl.name = "dockerhost"
     prl.update_guest_tools = true
@@ -33,6 +33,11 @@ Vagrant.configure("2") do |config|
 
   config.trigger.after [:up, :provision] do |trigger|
     trigger.info = "Deploying client certificate"
+    trigger.run = {path: "host.sh" }
+  end
+
+  config.trigger.after [:suspend] do |trigger|
+    trigger.info = "Undeploying client certificate"
     trigger.run = {path: "host.sh" }
   end
 

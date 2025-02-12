@@ -31,12 +31,17 @@
 * Usage
 
   Simply run ~vagrant up~ in this directory. It will provision a new
-  VM based on ~bento/ubuntu-18.04~, install an up-to-date Docker
+  VM based on ~bento/ubuntu-24.04~, install an up-to-date Docker
   daemon, generate TLS certificates and create a new Docker context
   named ~docker-parallels~ on your Mac, that is activated
   automatically.
 
 * Notes
+
+  - *Bug 2025-02-01* Parallels 20.2 comes with a bug that breaks the
+    ~prl_fs~ fstype, therefore host file systems from macOS cannot be
+    mounted into the docker machine; workaround are either to stay
+    with Parallels 20.1.3 or to downgrade to Parallels 19.
 
   - the VM is provisioned to share ~/Users~ with the Mac; this makes
     it easy to add Mac directories as volumes to Docker containers
