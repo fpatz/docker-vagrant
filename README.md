@@ -16,18 +16,15 @@ Advantages:
 
 # Prerequisites
 
--   Parallels Desktop for Mac (Pro edition)
+- Parallels Desktop for Mac (Pro edition)
+- Docker CLI on your Mac
+- Vagrant
+- The Parallels provider for Vagrant
 
--   Docker CLI on your Mac
-
--   Vagrant
-
--   The Parallels provider for Vagrant
-
-    ``` shell
-    brew install docker vagrant
-    vagrant plugin install vagrant-parallels
-    ```
+  ``` shell
+  brew install docker vagrant
+  vagrant plugin install vagrant-parallels
+  ```
 
 # Installation
 
@@ -37,15 +34,27 @@ vagrant` that manages the Docker virtual machine.
 
 # Usage
 
-`docker vagrant` is a relatively simple wrapper over the `vagrant`
-command and offers the same subcommands, arguments and options. To
-provision a virtual docker machine simply run `docker vagrant up`. To
-shut down Docker run `docker vagrant halt`.
+`docker vagrant` is a relatively simple wrapper over Vagrant itself
+and offers the same subcommands, arguments and options. To provision a
+virtual docker machine simply run `docker vagrant up`:
+
+``` shell
+$ docker vagrant up
+Bringing machine 'default' up with 'parallels' provider...
+... lots of output ...
+$ docker context ls
+NAME                 DESCRIPTION                               DOCKER ENDPOINT               ERROR
+docker-parallels *   dockerhost                                tcp://10.211.55.91:2376       
+$ docker run -it --rm alpine
+/ # 
+```
 
 `docker vagrant up` will provision a new VM based on
 `bento/ubuntu-24.04`, installs an up-to-date Docker daemon, generates
 TLS certificates and creates a new Docker context named
 `docker-parallels` on your Mac, that is activated automatically.
+
+To shut down Docker run `docker vagrant halt`.
 
 # Notes
 
