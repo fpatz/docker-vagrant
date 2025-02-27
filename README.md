@@ -1,4 +1,4 @@
-# Docker for Vagrant
+# Make a Docker host with Vagrant and Parallels
 
 This projects provisions a virtual machine that runs the Docker daemon
 on macOS. The provisioning is automated using Vagrant and Parallels
