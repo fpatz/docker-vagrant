@@ -31,14 +31,14 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", path: "provision.sh"
 
-  config.trigger.after [:up, :provision] do |trigger|
+  config.trigger.after [:up, :provision, :resume] do |trigger|
     trigger.info = "Deploying client certificate"
-    trigger.run = {path: "host.sh" }
+    trigger.run = {path: "host.sh", args: "deploy"}
   end
 
-  config.trigger.after [:suspend] do |trigger|
+  config.trigger.after [:suspend, :halt, :destroy] do |trigger|
     trigger.info = "Undeploying client certificate"
-    trigger.run = {path: "host.sh" }
+    trigger.run = {path: "host.sh", args: "undeploy" }
   end
 
 end
