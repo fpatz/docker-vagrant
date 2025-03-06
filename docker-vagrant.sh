@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-if [[ "$1" == "docker-cli-plugin-metadata" ]]; then
+set -euo pipefail
+
+if [[ "${1:-}" == "docker-cli-plugin-metadata" ]]; then
     cat <<EOF
 {
      "SchemaVersion": "0.1.0",
