@@ -17,17 +17,17 @@ fi
 VAGRANT_CMD=vagrant
 
 if ! command -v $VAGRANT_CMD &> /dev/null; then
-    echo "Please install Vagrant." 2>&1
-    exit -1
+    echo "Prequisite missing: did not find the 'vagrant' command." >&2
+    exit 1
 fi
 
 if ! $VAGRANT_CMD plugin list | grep -q vagrant-parallels; then
-    echo "Please install the vagrant-parallels plugin." 2>&1
-    exit -1
+    echo "Prerequisite missing: install the 'vagrant-parallels' plugin by"\
+	 "running 'vagrant plugin install vagrant-parallels'">&2
+    exit 1
 fi
 
 shift
 
-VAGRANT_CWD=$(dirname `readlink $0`)
-cd $VAGRANT_CWD
-$VAGRANT_CMD $*
+project_directory=$(dirname `readlink $0`)
+cd $project_directory && $VAGRANT_CMD $*
