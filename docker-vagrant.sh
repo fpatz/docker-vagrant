@@ -30,4 +30,4 @@ fi
 shift
 
 project_directory=$(dirname `readlink $0`)
-cd $project_directory && $VAGRANT_CMD $*
+cd $project_directory && $VAGRANT_CMD "$@"
