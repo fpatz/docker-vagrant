@@ -103,8 +103,8 @@ $ docker run -it --rm alpine
 - you might want to have extra options in `daemon.json` on the docker
   host; to do this, place a file `daemon-extra.json` in this folder,
   and its contents will be added *verbatim* in the middle of
-  `daemon.json`, so don't forget a proper comma! An example would be
-  (note the comma!):
+  `daemon.json`, so don't forget a trailing comma! An example would be
+  (again, note the comma!):
   
   ``` json
   "registry-mirrors" : ["https://mydockermirror.example.com"],
