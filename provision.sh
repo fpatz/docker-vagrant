@@ -20,7 +20,7 @@ DOCKER_APT_SRCS=/etc/apt/sources.list.d/docker.list
 HOSTSHARE=/vagrant
 
 # We use 'mkcert' to generate server and client certificates
-MKCERT_URL=https://dl.filippo.io/mkcert/latest?for=linux/amd64
+MKCERT_URL=https://dl.filippo.io/mkcert/latest?for=linux/$ARCH
 MKCERT_PATH=/usr/bin/mkcert
 
 
@@ -52,9 +52,9 @@ function ensure_docker () {
 # certificates (https://github.com/FiloSottile/mkcert)
 function ensure_mkcert () {
     if ! which mkcert; then
-	curl -JLO ${MKCERT_URL}
-	chmod +x mkcert-v*-linux-amd64
-	cp mkcert-v*-linux-amd64 ${MKCERT_PATH}
+	rm -f mkcert-v*-linux-$(ARCH)
+	curl -o ${MKCERT_PATH} -JLO ${MKCERT_URL}
+	chmod +x ${MKCERT_PATH}
     fi
 }
 
