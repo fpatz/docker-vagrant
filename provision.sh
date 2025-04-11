@@ -106,6 +106,9 @@ EOF
 
     systemctl daemon-reload
     systemctl restart docker
+
+    echo "Installing binfmt support..."
+    docker run --privileged --rm tonistiigi/binfmt --install all
 }
 
 cd /home/vagrant

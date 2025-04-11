@@ -16,6 +16,9 @@ concerns, performance issues, and hidden magic. This plugin lets you:
 ✅ Manage the VM directly through Docker CLI: `docker vagrant up`,
 `docker vagrant ssh`, etc.
 
+✅ Support for Intel and ARM Macs, including cross-platform builds
+using https://github.com/tonistiigi/binfmt
+
 ## Install
 Clone this repository and run `make install` in the project
 directory. This will create a new Docker CLI subcommand `docker
