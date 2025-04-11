@@ -1,6 +1,9 @@
 .PHONY: install test prebuilt-box
 
 CLI_PLUGIN=~/.docker/cli-plugins/docker-vagrant
+PREBUILT_BOX_NAME=docker-vagrant-base
+PREBUILT_BOX_FILE=$(PREBUILT_BOX_NAME).parallels.box
+PREBUILT_BOX_VAGRANT=prebuilt-box.vagrant
 
 install:
 	mkdir -p ~/.docker/cli-plugins
@@ -10,11 +13,17 @@ install:
 test:
 	bash test.sh
 
-prebuilt-box:
+prebuilt-box: $(PREBUILT_BOX_FILE)
+
+$(PREBUILT_BOX_FILE):
 	-vagrant halt
+	-prlctl stop ubuntu-basebox
 	-prlctl delete ubuntu-basebox
-	VAGRANT_VAGRANTFILE=prebuilt-box.vagrant vagrant up
-	VAGRANT_VAGRANTFILE=prebuilt-box.vagrant vagrant halt
-	VAGRANT_VAGRANTFILE=prebuilt-box.vagrant vagrant package --output docker-vagrant-base.parallels.box
-	-vagrant box remove docker-vagrant-base
-	vagrant box add docker-vagrant-base docker-vagrant-base.parallels.box
+	(\
+		VAGRANT_VAGRANTFILE=$(PREBUILT_BOX_VAGRANT) \
+		vagrant up && \
+		vagrant halt && \
+		vagrant package --output $(PREBUILT_BOX_FILE) \
+	)
+	-vagrant box remove $(PREBUILT_BOX_NAME)
+	vagrant box add $(PREBUILT_BOX_NAME) $(PREBUILT_BOX_FILE)
