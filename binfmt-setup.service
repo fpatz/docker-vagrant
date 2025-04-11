@@ -1,0 +1,11 @@
+[Unit]
+Description=Set up binfmt handlers for QEMU cross-arch support
+After=multi-user.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/vagrant/setup-binfmt.sh
+
+[Install]
+WantedBy=multi-user.target

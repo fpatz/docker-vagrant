@@ -1,3 +1,5 @@
 /.vagrant/
 /docker-parallels.dockercontext
 /export_*/
+/daemon-extra.json
+/docker-vagrant-base.parallels.box

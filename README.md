@@ -92,5 +92,22 @@ $ docker run -it --rm alpine
 - **Bug 2025-02-01** Parallels 20.2 discontinues the `prl_fs`
   fstype. Update the `vagrant-parallels` plugin to at least version
   2.4.4 for a workaround that uses `prlfsd` and FUSE instead.
+  
+- the Parallels provider for Vagrant will update outdated Parallels
+  Tools, which is almost always the case, and takes a few minutes,
+  delaying the startup time. You can create a Vagrant box based on the
+  bento box, but with up-to-date Parallels Tools by running "make
+  prebuilt-box"; docker-vagrant will automatically pick up that box,
+  if it is there.
+  
+- you might want to have extra options in `daemon.json` on the docker
+  host; to do this, place a file `daemon-extra.json` in this folder,
+  and its contents will be added *verbatim* in the middle of
+  `daemon.json`, so don't forget a proper comma! An example would be
+  (note the comma!):
+  
+  ``` json
+  "registry-mirrors" : ["https://mydockermirror.example.com"],
+  ```
 
 Feel free to hack on the scripts and drop me a MR.
