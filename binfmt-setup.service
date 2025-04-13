@@ -5,7 +5,7 @@ Requires=docker.service
 
 [Service]
 Type=oneshot
-ExecStart=/vagrant/setup-binfmt.sh
+ExecStart=/usr/local/bin/setup-binfmt.sh
 
 [Install]
 WantedBy=multi-user.target

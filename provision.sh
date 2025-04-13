@@ -136,8 +136,9 @@ EOF
     fi
 
     echo "Installing binfmt support..."
-    chmod +x /vagrant/setup-binfmt.sh
     cp /vagrant/binfmt-setup.service /etc/systemd/system/
+    cp /vagrant/setup-binfmt.sh /usr/local/bin/
+    chmod +x /usr/local/bin/setup-binfmt.sh
     systemctl -q enable binfmt-setup.service
     systemctl start binfmt-setup.service
 }
