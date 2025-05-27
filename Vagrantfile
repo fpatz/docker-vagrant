@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
       prl.cpus = 8
       prl.name = VAGRANT_VM_NAME
       prl.update_guest_tools = true
+      prl.customize ["set", :id, "--time-sync", "on"]
     end
 
     vm.vm.provision "shell", path: "provision.sh"
