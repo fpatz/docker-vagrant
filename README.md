@@ -5,6 +5,10 @@ directly from the Docker CLI. The current implementation uses
 Parallels Desktop, but feel free to adapt my Vagrantfile to other
 Hypervisors -- the user interface will be the same.
 
+**Note**: You'll be better off with
+[colima](https://github.com/abiosoft/colima) if you just need seamless
+Docker and don't need to run your dockerhost in Parallels Desktop.
+
 ## Why?
 Docker on macOS can be tricky — Docker Desktop comes with licensing
 concerns, performance issues, and hidden magic. This plugin lets you:
